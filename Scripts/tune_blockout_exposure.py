@@ -43,10 +43,10 @@ set_post_process_property(
     ("override_auto_exposure_bias", "b_override_auto_exposure_bias", "bOverride_AutoExposureBias"),
     True,
 )
-set_post_process_property(("auto_exposure_bias", "AutoExposureBias"), -2.0)
+set_post_process_property(("auto_exposure_bias", "AutoExposureBias"), -1.0)
 volume.set_editor_property("settings", settings)
 
 if not unreal.get_editor_subsystem(unreal.LevelEditorSubsystem).save_current_level():
     raise RuntimeError("Could not save Cordon map")
 
-print("CORDON_EXPOSURE_SET method=Manual bias=-2.0")
+print("CORDON_EXPOSURE_SET method=Manual bias=-1.0")

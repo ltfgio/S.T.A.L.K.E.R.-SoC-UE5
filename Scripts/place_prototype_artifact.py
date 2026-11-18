@@ -10,7 +10,7 @@ if not pickup_class:
 
 pickup = unreal.EditorLevelLibrary.spawn_actor_from_class(
     pickup_class,
-    unreal.Vector(2800, 1450, 110),
+    unreal.Vector(-3500, 0, 110),
     unreal.Rotator(0, 0, 0),
     False,
 )
@@ -21,4 +21,4 @@ pickup.set_actor_label("Gameplay / prototype artifact pickup")
 if not unreal.get_editor_subsystem(unreal.LevelEditorSubsystem).save_current_level():
     raise RuntimeError("Could not save the Cordon map")
 
-print("PROTOTYPE_ARTIFACT_PLACED at=(2800,1450,110)")
+print("PROTOTYPE_ARTIFACT_PLACED at=(-3500,0,110)")
