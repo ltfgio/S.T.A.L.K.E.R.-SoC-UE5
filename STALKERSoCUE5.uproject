@@ -30,6 +30,14 @@
     {
       "Name": "AIAssistant",
       "Enabled": false
+    },
+    {
+      "Name": "PythonScriptPlugin",
+      "Enabled": true
+    },
+    {
+      "Name": "EditorScriptingUtilities",
+      "Enabled": true
     }
   ]
 }
