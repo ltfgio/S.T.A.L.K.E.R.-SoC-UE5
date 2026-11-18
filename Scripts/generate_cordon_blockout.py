@@ -1,7 +1,7 @@
 import unreal
 
 # Original, asset-free greybox blockout. All geometry uses Unreal primitive meshes.
-level_path = "/Game/Cordon/L_Cordon_Blockout"
+level_path = "/Game/Cordon/L_Cordon_Blockout_Bright"
 subsystem = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
 if not subsystem.new_level(level_path, False):
     raise RuntimeError("Could not create level: " + level_path)
@@ -115,17 +115,23 @@ sun = unreal.EditorLevelLibrary.spawn_actor_from_class(
     unreal.DirectionalLight, unreal.Vector(0, 0, 5000), unreal.Rotator(-32, 0, -28), False
 )
 sun.set_actor_label("Lighting / sun")
-sun.light_component.set_editor_property("intensity", 10.0)
+atmosphere = unreal.EditorLevelLibrary.spawn_actor_from_class(
+    unreal.SkyAtmosphere, unreal.Vector(0, 0, 0), unreal.Rotator(0, 0, 0), False
+)
+atmosphere.set_actor_label("Atmosphere / sky")
+sun.light_component.set_editor_property("intensity", 100000.0)
+sun.light_component.set_editor_property("atmosphere_sun_light", True)
 sky = unreal.EditorLevelLibrary.spawn_actor_from_class(
     unreal.SkyLight, unreal.Vector(0, 0, 500), unreal.Rotator(0, 0, 0), False
 )
 sky.set_actor_label("Lighting / sky fill")
-sky.light_component.set_editor_property("intensity", 1.0)
+sky.light_component.set_editor_property("intensity", 2.0)
+sky.light_component.set_editor_property("real_time_capture", True)
 fog = unreal.EditorLevelLibrary.spawn_actor_from_class(
     unreal.ExponentialHeightFog, unreal.Vector(0, 0, 0), unreal.Rotator(0, 0, 0), False
 )
 fog.set_actor_label("Atmosphere / distance fog")
-fog.component.set_editor_property("fog_density", 0.006)
+fog.component.set_editor_property("fog_density", 0.001)
 fog.component.set_editor_property("fog_height_falloff", 0.22)
 
 if not subsystem.save_current_level():
