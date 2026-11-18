@@ -1,7 +1,7 @@
 import unreal
 
 # Original, asset-free greybox blockout. All geometry uses Unreal primitive meshes.
-level_path = "/Game/Cordon/L_Cordon_Blockout_Bright"
+level_path = "/Game/Cordon/L_Cordon_Blockout_Balanced"
 subsystem = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
 if not subsystem.new_level(level_path, False):
     raise RuntimeError("Could not create level: " + level_path)
@@ -119,13 +119,13 @@ atmosphere = unreal.EditorLevelLibrary.spawn_actor_from_class(
     unreal.SkyAtmosphere, unreal.Vector(0, 0, 0), unreal.Rotator(0, 0, 0), False
 )
 atmosphere.set_actor_label("Atmosphere / sky")
-sun.light_component.set_editor_property("intensity", 100000.0)
+sun.light_component.set_editor_property("intensity", 1000.0)
 sun.light_component.set_editor_property("atmosphere_sun_light", True)
 sky = unreal.EditorLevelLibrary.spawn_actor_from_class(
     unreal.SkyLight, unreal.Vector(0, 0, 500), unreal.Rotator(0, 0, 0), False
 )
 sky.set_actor_label("Lighting / sky fill")
-sky.light_component.set_editor_property("intensity", 2.0)
+sky.light_component.set_editor_property("intensity", 0.5)
 sky.light_component.set_editor_property("real_time_capture", True)
 fog = unreal.EditorLevelLibrary.spawn_actor_from_class(
     unreal.ExponentialHeightFog, unreal.Vector(0, 0, 0), unreal.Rotator(0, 0, 0), False
